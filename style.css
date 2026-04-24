@@ -1,0 +1,228 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream: #fdf5ee;
+  --pink: #f4a0b0;
+  --red: #e03a3a;
+  --teal: #2db8a0;
+  --dark: #1a1a2e;
+  --yellow: #f5c842;
+  --orange: #f5a623;
+  --purple: #9b59b6;
+  --blue: #5ab0f5;
+  --green: #4caf9a;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Nunito', sans-serif;
+  background: var(--cream);
+  touch-action: pan-y;
+}
+
+/* ===== SLIDE WRAPPER ===== */
+.slides-container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  transition: transform 0.7s cubic-bezier(0.77,0,0.175,1);
+  will-change: transform;
+}
+
+.slide {
+  min-width: 100vw;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ===== DOTS NAV ===== */
+.dots-nav {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 7px;
+  z-index: 100;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.18);
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.dot.active {
+  background: var(--red);
+  width: 22px;
+  border-radius: 4px;
+}
+
+/* ===== MUSIC BTN ===== */
+.music-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 20px;
+  width: 52px;
+  height: 52px;
+  background: var(--red);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 200;
+  box-shadow: 0 4px 16px rgba(224,58,58,0.4);
+  transition: transform 0.2s;
+}
+.music-btn:hover { transform: scale(1.1); }
+.music-btn svg { fill: white; }
+
+/* ===== BACK BTN ===== */
+.back-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  font-size: 18px;
+  transition: all 0.2s;
+}
+.back-btn:hover { background: #f0f0f0; }
+
+/* ===== NOTES ANIMATION ===== */
+.music-notes {
+  position: absolute;
+  bottom: 60px;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+}
+
+.note {
+  position: absolute;
+  color: var(--red);
+  opacity: 0.5;
+  font-size: 18px;
+  animation: floatNote 4s ease-in-out infinite;
+}
+
+@keyframes floatNote {
+  0%, 100% { transform: translateY(0) rotate(-10deg); opacity: 0.4; }
+  50% { transform: translateY(-20px) rotate(10deg); opacity: 0.7; }
+}
+
+/* ===== CONFETTI ===== */
+.confetti-piece {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  animation: confettiFall 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes confettiFall {
+  0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(60px) rotate(360deg); opacity: 0; }
+}
+
+/* ======================== SLIDE 0: HERO ======================== */
+#slide-0 { background: var(--cream); padding: 0; justify-content: flex-start; }
+.balloons-row { display: flex; justify-content: center; gap: 18px; padding-top: 10px; width: 100%; overflow: visible; }
+.balloon { display: flex; flex-direction: column; align-items: center; animation: balloonFloat 3s ease-in-out infinite; }
+.balloon:nth-child(2) { animation-delay: 0.4s; }
+.balloon:nth-child(3) { animation-delay: 0.8s; }
+.balloon:nth-child(4) { animation-delay: 1.2s; }
+.balloon:nth-child(5) { animation-delay: 1.6s; }
+
+@keyframes balloonFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+.balloon-body { width: 62px; height: 78px; border-radius: 50% 50% 50% 50% / 55% 55% 45% 45%; position: relative; border: 2.5px solid rgba(0,0,0,0.15); }
+.balloon-body::after { content: ''; position: absolute; bottom: -3px; left: 50%; transform: translateX(-50%); width: 6px; height: 6px; background: inherit; border-radius: 50%; }
+.balloon-string { width: 1.5px; height: 60px; background: #333; }
+.hero-content { padding: 14px 24px 0; width: 100%; }
+.step-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; color: #666; text-transform: uppercase; margin-bottom: 10px; }
+.hero-title { font-size: 42px; font-weight: 900; color: var(--dark); line-height: 1.1; margin-bottom: 6px; }
+.hero-title .highlight { color: var(--red); }
+.hero-sub { font-size: 15px; color: #555; margin-bottom: 30px; }
+.open-gift-btn { margin-top: 10px; background: var(--red); color: white; border: none; padding: 18px 40px; border-radius: 50px; font-size: 18px; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 10px; box-shadow: 0 6px 20px rgba(224,58,58,0.35); transition: transform 0.2s, box-shadow 0.2s; }
+.open-gift-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(224,58,58,0.45); }
+
+/* ======================== SLIDE 1: MAKE A WISH ======================== */
+#slide-1 { background: var(--cream); padding: 20px 24px 100px; align-items: flex-start; }
+.step-num { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; color: #888; text-transform: uppercase; }
+.step-title { font-size: 30px; font-weight: 900; color: var(--dark); line-height: 1.15; margin: 6px 0 4px; }
+.step-desc { font-size: 14px; color: #666; margin-bottom: 24px; }
+.cake-container { display: flex; justify-content: center; width: 100%; margin-bottom: 16px; }
+.candle-click { cursor: pointer; transition: transform 0.2s; }
+.candle-click:hover { transform: scale(1.1); }
+.candles-left-text { text-align: center; font-size: 15px; color: #555; font-weight: 600; margin-top: 10px; }
+.wish-sent { display: none; text-align: center; font-size: 22px; font-weight: 800; color: #aa8800; margin-top: 16px; }
+.see-next-btn { display: none; margin: 24px auto 0; background: var(--red); color: white; border: none; padding: 16px 36px; border-radius: 50px; font-size: 17px; font-weight: 800; cursor: pointer; align-items: center; gap: 10px; box-shadow: 0 5px 18px rgba(224,58,58,0.35); transition: transform 0.2s; }
+
+/* ======================== SLIDE 2: CRICKET ======================== */
+#slide-2 { background: #2db8a0; padding: 20px 20px 100px; align-items: flex-start; }
+.cricket-card { background: #1a2535; border-radius: 18px; padding: 20px 22px; width: 100%; max-width: 420px; margin: 18px auto; color: white; position: relative; overflow: hidden; }
+.cricket-card-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--yellow); margin-bottom: 14px; }
+.cricket-stats { display: flex; align-items: flex-end; gap: 20px; }
+.cricket-stat-label { font-size: 11px; color: #aaa; margin-bottom: 2px; }
+.cricket-stat-value { font-size: 52px; font-weight: 900; line-height: 1; }
+.cricket-stat-sub { font-size: 12px; color: var(--yellow); font-weight: 700; margin-top: 2px; }
+.cricket-divider { width: 1.5px; height: 70px; background: rgba(255,255,255,0.15); margin: 0 10px; }
+.cricket-roles { text-align: center; font-size: 13px; color: #ccc; margin-top: 14px; letter-spacing: 1.5px; }
+.cricket-stripe-indicator { width: 40px; height: 5px; background: var(--red); border-radius: 3px; margin: 16px auto 0; }
+.bat-animation-box { width: 100%; max-width: 420px; margin: 10px auto; height: 60px; background: rgba(255,255,255,0.15); border-radius: 12px; display: flex; align-items: center; padding: 0 16px; overflow: hidden; position: relative; }
+.bat-cursor { width: 3px; height: 28px; background: rgba(255,255,255,0.7); animation: blink 1s steps(1) infinite; }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+.cricket-quote { background: #fdf5c0; border-radius: 14px; padding: 18px 18px; max-width: 420px; width: 100%; margin: 10px auto; font-size: 15px; color: #555; font-style: italic; line-height: 1.5; }
+.memories-btn { display: flex; margin: 20px auto 0; background: var(--red); color: white; border: none; padding: 16px 36px; border-radius: 50px; font-size: 17px; font-weight: 800; cursor: pointer; align-items: center; gap: 10px; box-shadow: 0 5px 18px rgba(0,0,0,0.25); }
+
+/* ======================== SLIDE 3: MEMORIES ======================== */
+#slide-3 { background: var(--cream); padding: 20px 24px 100px; align-items: flex-start; }
+.photos-carousel { display: flex; gap: 16px; overflow-x: auto; width: calc(100% + 48px); margin-left: -24px; padding: 0 24px 10px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+.photos-carousel::-webkit-scrollbar { display: none; }
+.photo-card { min-width: 240px; background: white; border-radius: 20px; border: 2.5px solid var(--dark); overflow: hidden; scroll-snap-align: start; box-shadow: 4px 4px 0 var(--dark); flex-shrink: 0; }
+.photo-card img { width: 100%; height: 220px; object-fit: cover; display: block; }
+.photo-card-caption { padding: 12px 14px; font-size: 14px; font-weight: 700; color: var(--dark); }
+.read-letter-btn { display: flex; margin: 24px auto 0; background: var(--red); color: white; border: none; padding: 16px 36px; border-radius: 50px; font-size: 17px; font-weight: 800; cursor: pointer; align-items: center; gap: 10px; box-shadow: 0 5px 18px rgba(224,58,58,0.35); }
+
+/* ======================== SLIDE 4: LETTER ======================== */
+#slide-4 { background: var(--cream); padding: 20px 24px 100px; align-items: flex-start; }
+.dear-title { font-size: 36px; font-weight: 900; color: var(--dark); margin: 8px 0 20px; }
+.yellow-letter-card { width: 100%; max-width: 420px; background: #fdf5c0; border-radius: 18px; border: 2px solid #e8d880; padding: 24px 20px 20px; box-shadow: 0 4px 18px rgba(0,0,0,0.07); font-size: 15px; line-height: 1.85; color: #3a3a3a; }
+.yellow-letter-card p { margin-bottom: 14px; }
+.letter-signature { display: flex; justify-content: flex-end; align-items: center; gap: 6px; font-size: 17px; font-weight: 800; color: var(--red); margin-top: 18px; }
+.one-last-btn { display: flex; margin: 24px auto 0; background: var(--red); color: white; border: none; padding: 17px 36px; border-radius: 50px; font-size: 17px; font-weight: 800; cursor: pointer; align-items: center; gap: 10px; box-shadow: 0 5px 20px rgba(224,58,58,0.38); }
+
+/* ======================== SLIDE 5: FINALE ======================== */
+#slide-5 { background: var(--cream); align-items: center; justify-content: center; padding-bottom: 100px; position: relative; overflow: hidden; }
+.finale-confetti-bg { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.finale-cake { font-size: 72px; animation: cakeBounce 2s ease-in-out infinite; margin-bottom: 16px; position: relative; z-index: 1; }
+@keyframes cakeBounce { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-12px) scale(1.06); } }
+.finale-title { font-size: 38px; font-weight: 900; color: var(--dark); text-align: center; line-height: 1.15; position: relative; z-index: 1; padding: 0 20px; }
+.finale-title .red { color: var(--red); }
+.finale-sub { font-size: 15px; color: #555; text-align: center; margin: 12px 20px 30px; position: relative; z-index: 1; }
+.watch-again-btn { background: transparent; color: var(--dark); border: 2.5px solid var(--dark); padding: 15px 36px; border-radius: 50px; font-size: 17px; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 10px; position: relative; z-index: 1; transition: background 0.2s, color 0.2s, transform 0.2s; }
+
+/* TAP TO PLAY TOAST */
+#tapToPlay { position: fixed; bottom: 90px; right: 16px; background: rgba(26,26,46,0.92); color: white; padding: 10px 16px; border-radius: 30px; font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 6px; z-index: 300; animation: toastPulse 1.5s ease-in-out infinite; transition: opacity 0.4s; }
+#tapToPlay.hidden { opacity: 0; pointer-events: none; }
+@keyframes toastPulse { 0%, 100% { box-shadow: 0 4px 18px rgba(224,58,58,0.3); } 50% { box-shadow: 0 4px 26px rgba(224,58,58,0.7); } }
+@keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }

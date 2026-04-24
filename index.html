@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday, Sanju! 🎂</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="tapToPlay" class="hidden" onclick="tapToPlayMusic()">🎵 Tap to start music</div>
+
+  <nav class="dots-nav" id="dotsNav">
+    <div class="dot active" onclick="goToSlide(0)"></div>
+    <div class="dot" onclick="goToSlide(1)"></div>
+    <div class="dot" onclick="goToSlide(2)"></div>
+    <div class="dot" onclick="goToSlide(3)"></div>
+    <div class="dot" onclick="goToSlide(4)"></div>
+    <div class="dot" onclick="goToSlide(5)"></div>
+  </nav>
+
+  <div class="music-btn" id="musicBtn" onclick="toggleMusic()" title="Toggle music">
+    <svg id="iconPlaying" width="22" height="22" viewBox="0 0 24 24"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/></svg>
+    <svg id="iconMuted" width="22" height="22" viewBox="0 0 24 24" style="display:none;"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z" opacity="0.3"/><line x1="3" y1="3" x2="21" y2="21" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>
+  </div>
+
+  <audio id="bgMusic" loop autoplay muted>
+    <source src="C:\Users\User\OneDrive\Desktop\Sanju_birthday\Happy Birthday .mpeg" type="audio/mpeg">
+  </audio>
+
+  <div class="slides-container" id="slidesContainer">
+
+    <div class="slide" id="slide-0">
+      <div class="confetti-bg" id="confettiBg0"></div>
+      <div class="balloons-row">
+        <div class="balloon"><div class="balloon-body" style="background:#e74c3c;"></div><div class="balloon-string"></div></div>
+        <div class="balloon"><div class="balloon-body" style="background:#9b59b6;"></div><div class="balloon-string"></div></div>
+        <div class="balloon"><div class="balloon-body" style="background:#f5a623;"></div><div class="balloon-string"></div></div>
+        <div class="balloon"><div class="balloon-body" style="background:#2db8a0;"></div><div class="balloon-string"></div></div>
+        <div class="balloon"><div class="balloon-body" style="background:#5ab0f5;"></div><div class="balloon-string"></div></div>
+      </div>
+      <div class="hero-content">
+        <div class="step-label">A SPECIAL DAY FOR</div>
+        <div class="hero-title">Happy<br>Birthday,<br><span class="highlight">Sanju!</span></div>
+        <p class="hero-sub">A little gift crafted with love — from Kinjal</p>
+        <button class="open-gift-btn" onclick="goToSlide(1)">Open Your Gift 🎁</button>
+        <div class="music-notes" style="position:relative; height:80px;">
+          <span class="note" style="left:8%; animation-delay:0s;">♪</span>
+          <span class="note" style="left:20%; animation-delay:1s; font-size:14px;">♫</span>
+          <span class="note" style="left:45%; animation-delay:0.5s;">♩</span>
+          <span class="note" style="left:65%; animation-delay:1.5s; font-size:14px;">♫</span>
+          <span class="note" style="left:80%; animation-delay:0.2s; font-size:20px;">♪</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide" id="slide-1">
+      <div class="confetti-bg" id="confettiBg1" style="opacity:0;transition:opacity 0.5s;"></div>
+      <button class="back-btn" onclick="goToSlide(0)">←</button>
+      <div style="padding-top:64px; width:100%; padding-left:24px; padding-right:24px;">
+        <div class="step-num">STEP 1 · MAKE A WISH</div>
+        <div class="step-title">Tap the candles<br>to blow them out</div>
+        <div class="step-desc">Each flame holds a wish I have for you, Sanju.</div>
+      </div>
+      <div class="cake-container">
+        <svg id="cakeSvg" width="290" height="290" viewBox="0 0 290 290" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="145" cy="258" rx="120" ry="10" fill="#d4b896" opacity="0.6"/>
+          <rect x="38" y="195" width="214" height="60" rx="10" fill="#f2b8c8"/>
+          <rect x="38" y="195" width="214" height="12" rx="6" fill="#e8a0b8"/>
+          <path d="M70,213 a10,10 0 0,0 20,0" stroke="#d4879d" stroke-width="2.5" fill="none"/>
+          <path d="M118,213 a10,10 0 0,0 20,0" stroke="#d4879d" stroke-width="2.5" fill="none"/>
+          <path d="M166,213 a10,10 0 0,0 20,0" stroke="#d4879d" stroke-width="2.5" fill="none"/>
+          <path d="M214,213 a10,10 0 0,0 20,0" stroke="#d4879d" stroke-width="2.5" fill="none"/>
+          <rect x="58" y="148" width="174" height="52" rx="8" fill="#f5d98c"/>
+          <rect x="58" y="148" width="174" height="10" rx="5" fill="#e8c87a"/>
+          <rect x="80" y="163" width="8" height="4" rx="2" fill="#e03a3a" opacity="0.7"/>
+          <rect x="140" y="170" width="8" height="4" rx="2" fill="#5ab0f5" opacity="0.7"/>
+          <rect x="195" y="163" width="8" height="4" rx="2" fill="#e03a3a" opacity="0.7"/>
+          <rect x="115" y="176" width="8" height="4" rx="2" fill="#f5a623" opacity="0.7"/>
+          <rect x="83" y="115" width="124" height="38" rx="8" fill="#f5b89c"/>
+          <rect x="83" y="115" width="124" height="10" rx="5" fill="#e8a08a"/>
+          <path d="M100,128 a8,8 0 0,0 16,0" stroke="#d47a65" stroke-width="2" fill="none"/>
+          <path d="M135,128 a8,8 0 0,0 16,0" stroke="#d47a65" stroke-width="2" fill="none"/>
+          <path d="M170,128 a8,8 0 0,0 16,0" stroke="#d47a65" stroke-width="2" fill="none"/>
+
+          <g class="candle-click" id="candle-0" onclick="blowCandle(0)"><rect x="100" y="75" width="14" height="42" rx="4" fill="#e03a3a"/><ellipse cx="107" cy="75" rx="7" ry="4" fill="#c42a2a"/><g id="flame-0"><ellipse cx="107" cy="65" rx="6" ry="9" fill="#FFD700" opacity="0.9"/><ellipse cx="107" cy="62" rx="4" ry="6" fill="#FF8C00" opacity="0.8"/><ellipse cx="107" cy="60" rx="2" ry="3" fill="white" opacity="0.5"/></g></g>
+          <g class="candle-click" id="candle-1" onclick="blowCandle(1)"><rect x="122" y="75" width="14" height="42" rx="4" fill="#5ab0f5"/><ellipse cx="129" cy="75" rx="7" ry="4" fill="#4a90d0"/><g id="flame-1"><ellipse cx="129" cy="65" rx="6" ry="9" fill="#FFD700" opacity="0.9"/><ellipse cx="129" cy="62" rx="4" ry="6" fill="#FF8C00" opacity="0.8"/><ellipse cx="129" cy="60" rx="2" ry="3" fill="white" opacity="0.5"/></g></g>
+          <g class="candle-click" id="candle-2" onclick="blowCandle(2)"><rect x="144" y="72" width="14" height="45" rx="4" fill="#f5a623"/><ellipse cx="151" cy="72" rx="7" ry="4" fill="#d48a10"/><g id="flame-2"><ellipse cx="151" cy="62" rx="6" ry="9" fill="#FFD700" opacity="0.9"/><ellipse cx="151" cy="59" rx="4" ry="6" fill="#FF8C00" opacity="0.8"/><ellipse cx="151" cy="57" rx="2" ry="3" fill="white" opacity="0.5"/></g></g>
+          <g class="candle-click" id="candle-3" onclick="blowCandle(3)"><rect x="166" y="75" width="14" height="42" rx="4" fill="#9b59b6"/><ellipse cx="173" cy="75" rx="7" ry="4" fill="#7d3d94"/><g id="flame-3"><ellipse cx="173" cy="65" rx="6" ry="9" fill="#FFD700" opacity="0.9"/><ellipse cx="173" cy="62" rx="4" ry="6" fill="#FF8C00" opacity="0.8"/><ellipse cx="173" cy="60" rx="2" ry="3" fill="white" opacity="0.5"/></g></g>
+          <g class="candle-click" id="candle-4" onclick="blowCandle(4)"><rect x="188" y="75" width="14" height="42" rx="4" fill="#2db8a0"/><ellipse cx="195" cy="75" rx="7" ry="4" fill="#1d8878"/><g id="flame-4"><ellipse cx="195" cy="65" rx="6" ry="9" fill="#FFD700" opacity="0.9"/><ellipse cx="195" cy="62" rx="4" ry="6" fill="#FF8C00" opacity="0.8"/><ellipse cx="195" cy="60" rx="2" ry="3" fill="white" opacity="0.5"/></g></g>
+        </svg>
+      </div>
+      <div class="candles-left-text" id="candlesLeftText">5 candles left to blow out</div>
+      <div class="wish-sent" id="wishSent">✨ Your wish is on its way! ✨</div>
+      <button class="see-next-btn" id="seeNextBtn" onclick="goToSlide(2)">See What's Next →</button>
+    </div>
+
+    <div class="slide" id="slide-2">
+      <div class="confetti-bg" id="confettiBg2"></div>
+      <button class="back-btn" style="border-color:rgba(255,255,255,0.4);background:rgba(255,255,255,0.15);color:white;" onclick="goToSlide(1)">←</button>
+      <div style="padding-top:64px; width:100%; padding-left:20px; padding-right:20px;">
+        <div class="step-num" style="color:rgba(255,255,255,0.7);">STEP 2 · MAN OF THE MATCH</div>
+        <div class="step-title" style="color:white;">A tribute for<br>our cricket <span style="color:#f5c842;">champion</span></div>
+      </div>
+      <div class="cricket-card">
+        <div class="cricket-card-label">LIFE INNINGS · SANJU</div>
+        <div class="cricket-stats">
+          <div><div class="cricket-stat-label">Runs</div><div class="cricket-stat-value">100*</div><div class="cricket-stat-sub">Not Out</div></div>
+          <div class="cricket-divider"></div>
+          <div><div class="cricket-stat-label">Strike Rate</div><div class="cricket-stat-value">∞</div><div class="cricket-stat-sub">Legendary</div></div>
+        </div>
+        <div class="cricket-roles">Captain · Vibes · Boundary King</div>
+        <div class="cricket-stripe-indicator"></div>
+      </div>
+      <div class="bat-animation-box">
+        <span id="batText" style="color:rgba(255,255,255,0.6);font-size:15px;font-style:italic;margin-right:8px;">🏏 </span>
+        <div class="bat-cursor"></div>
+      </div>
+      <div class="cricket-quote">"Like a perfect cover drive — effortless, elegant, unforgettable. That's you, Sanju."</div>
+      <button class="memories-btn" onclick="goToSlide(3)">Our Memories 📷</button>
+    </div>
+
+    <div class="slide" id="slide-3">
+      <div class="confetti-bg" id="confettiBg3" style="opacity:0;"></div>
+      <button class="back-btn" onclick="goToSlide(2)">←</button>
+      <div style="padding-top:64px; width:100%; padding-left:24px; padding-right:24px;">
+        <div class="step-num">STEP 3 · FLASHBACK</div>
+        <div class="step-title" style="font-size:28px;">Memories we've<br>made together</div>
+      </div>
+      <div class="photos-carousel" style="margin-top:20px;">
+        <div class="photo-card"><img src="photo8.jpeg" alt="child Sanju" loading="lazy" /><div class="photo-card-caption">Vintage vibes and childhood memories. 📸</div></div>
+        <div class="photo-card"><img src="photo1.jpeg" alt="Sanju looking confident" loading="lazy" /><div class="photo-card-caption">😊 Always so confident, that's our Sanju!</div></div>
+        <div class="photo-card"><img src="photo2.jpeg" alt="Sanju at the temple" loading="lazy" /><div class="photo-card-caption">🌸 Blessings and good vibes always</div></div>
+        <div class="photo-card"><img src="photo3.jpeg" alt="Friends night out" loading="lazy" /><div class="photo-card-caption">​✨ No shirt, full style! 😂</div></div>
+        <div class="photo-card"><img src="photo4.jpeg" alt="Two friends selfie" loading="lazy" /><div class="photo-card-caption">❤️ Brothers from another mother 😎</div></div>
+        <div class="photo-card"><img src="photo5.jpeg" alt="Cool style"><div class="photo-card-caption">😎 Style level always max</div></div>
+        <div class="photo-card"><img src="photo6.jpeg" alt="Smile moment"><div class="photo-card-caption">​✨ The picnic gang in action! 🍗🔥</div></div>
+        <div class="photo-card"><img src="photo7.jpeg" alt="Legend moment"><div class="photo-card-caption">😁 Smile that changes mood instantly</div></div>
+      </div>
+      <button class="read-letter-btn" onclick="goToSlide(4)">Read Your Letter ✉️</button>
+    </div>
+
+    <div class="slide" id="slide-4">
+      <button class="back-btn" onclick="goToSlide(3)">←</button>
+      <div style="padding-top:64px; width:100%; padding-left:24px; padding-right:24px; padding-bottom:20px;">
+        <div class="step-num">STEP 4 · A NOTE FROM ME</div>
+        <div class="dear-title">Dear Sanju,</div>
+        <div class="yellow-letter-card">
+          <p>আমাদের বন্ধুত্বটা অনেকটা সেই পুরনো সিনেমার মতো, যতো সময় যাচ্ছে ততোই ক্লাসিক হয়ে উঠছে। You are the kind of person who makes the most boring days feel like an adventure. যখন মাথার ওপর হাজারটা চাপের পাহাড় থাকে, তোর সাথে একটা আড্ডাই যথেষ্ট সব কিছু সহজ করে দেওয়ার জন্য।</p>
+          <p>Thank you for being my constant support system. কখনো পাগলামি, কখনো সিরিয়াস আড্ডা, আর কখনো অকারণে একে অপরের পেছনে লাগা— এই সবকিছু মিলিয়েই তো আমরা। তোর মতো একজন বন্ধু পাওয়া মানে লাইফে একটা ‘Permanent Safe Zone’ খুঁজে পাওয়া। I know life moves fast, and we all get busy, কিন্তু তোর জন্য আমার সময় আর আমার পাগলামি সবসময় Fixed থাকবে।</p>
+          <p>Here’s to many more years of laughing at our own stupid jokes, making bad decisions together, and being each other’s backbone.</p>
+          <p>তোর এই বিশেষ দিনে শুধু এটাই বলব— তুই যেমন আছিস ঠিক তেমনই থাকিস। Stay gold, stay happy, and stay as crazy as you are.</p>
+          <div class="letter-signature">— Kinjal 🏏</div>
+        </div>
+        <button class="one-last-btn" onclick="goToSlide(5)">One Last Surprise ✨</button>
+      </div>
+    </div>
+
+    <div class="slide" id="slide-5">
+      <div class="finale-confetti-bg" id="finaleConfetti"></div>
+      <div class="finale-cake">🎂</div>
+      <div class="finale-title">Have the<br>best year<br><span class="red">ever, Sanju!</span></div>
+      <p class="finale-sub">Keep smashing boundaries — Keep playing your best innings and shining every single day. 🏏</p>
+      <button class="watch-again-btn" onclick="goToSlide(0)">↺ Watch Again</button>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
