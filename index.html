@@ -9,7 +9,26 @@
 </head>
 <body>
 
-  <div id="tapToPlay" class="hidden" onclick="tapToPlayMusic()">🎵 Tap to start music</div>
+  <!-- Music Splash Overlay -->
+  <div id="musicSplash" class="music-splash">
+    <div class="music-splash-inner">
+      <div class="music-splash-notes">
+        <span class="splash-note" style="--i:0">♪</span>
+        <span class="splash-note" style="--i:1">♫</span>
+        <span class="splash-note" style="--i:2">♩</span>
+        <span class="splash-note" style="--i:3">♬</span>
+        <span class="splash-note" style="--i:4">♪</span>
+      </div>
+      <div class="music-splash-emoji">🎵</div>
+      <div class="music-splash-title">A Special Song<br>for Sanju 🎂</div>
+      <div class="music-splash-sub">Tap below to begin the experience with music</div>
+      <button class="music-splash-btn" id="splashPlayBtn" onclick="startMusicExperience()">
+        <span class="btn-play-icon">▶</span>
+        <span>Tap to Play Music</span>
+      </button>
+      <div class="music-splash-skip" onclick="skipMusic()">Skip music →</div>
+    </div>
+  </div>
 
   <nav class="dots-nav" id="dotsNav">
     <div class="dot active" onclick="goToSlide(0)"></div>
@@ -21,8 +40,12 @@
   </nav>
 
   <div class="music-btn" id="musicBtn" onclick="toggleMusic()" title="Toggle music">
-    <svg id="iconPlaying" width="22" height="22" viewBox="0 0 24 24"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/></svg>
-    <svg id="iconMuted" width="22" height="22" viewBox="0 0 24 24" style="display:none;"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z" opacity="0.3"/><line x1="3" y1="3" x2="21" y2="21" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>
+    <div class="music-btn-ring"></div>
+    <svg id="iconPlaying" width="20" height="20" viewBox="0 0 24 24"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/></svg>
+    <svg id="iconMuted" width="20" height="20" viewBox="0 0 24 24" style="display:none;"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z" opacity="0.4"/><line x1="3" y1="3" x2="21" y2="21" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>
+    <div class="music-bars" id="musicBars">
+      <span></span><span></span><span></span>
+    </div>
   </div>
 
   <audio id="bgMusic" loop autoplay muted>

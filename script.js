@@ -127,24 +127,53 @@ function spawnFinaleConfetti() {
 // ================== MUSIC ==================
 let musicPlaying = false;
 
-function updateMusicIcon() {
-  document.getElementById('iconPlaying').style.display = musicPlaying ? '' : 'none';
-  document.getElementById('iconMuted').style.display = musicPlaying ? 'none' : '';
+function updateMusicBtn() {
+  const btn = document.getElementById('musicBtn');
+  const bars = document.getElementById('musicBars');
+  const iconPlaying = document.getElementById('iconPlaying');
+  const iconMuted = document.getElementById('iconMuted');
+
+  if (musicPlaying) {
+    btn.classList.remove('muted');
+    iconPlaying.style.display = '';
+    iconMuted.style.display = 'none';
+    bars.style.display = 'flex';
+  } else {
+    btn.classList.add('muted');
+    iconPlaying.style.display = 'none';
+    iconMuted.style.display = '';
+    bars.style.display = 'none';
+  }
 }
 
-function hideTapToPlay() {
-  const t = document.getElementById('tapToPlay');
-  if (t) t.classList.add('hidden');
+function dismissSplash() {
+  const splash = document.getElementById('musicSplash');
+  splash.classList.add('hidden');
+  setTimeout(() => { splash.style.display = 'none'; }, 650);
 }
 
-window.addEventListener('load', () => {
+function startMusicExperience() {
   const audio = document.getElementById('bgMusic');
-  audio.volume = 0.7;
   audio.muted = false;
-  musicPlaying = true;
-  updateMusicIcon();
-  hideTapToPlay();
-});
+  audio.volume = 0.7;
+  audio.play().then(() => {
+    musicPlaying = true;
+    updateMusicBtn();
+  }).catch(() => {
+    musicPlaying = false;
+    updateMusicBtn();
+  });
+  dismissSplash();
+}
+
+function skipMusic() {
+  const audio = document.getElementById('bgMusic');
+  audio.pause();
+  audio.muted = true;
+  musicPlaying = false;
+  updateMusicBtn();
+  dismissSplash();
+}
 
 function toggleMusic() {
   const audio = document.getElementById('bgMusic');
@@ -153,9 +182,16 @@ function toggleMusic() {
     musicPlaying = false;
   } else {
     audio.muted = false;
-    audio.play();
+    audio.volume = 0.7;
+    audio.play().catch(() => {});
     musicPlaying = true;
   }
-  updateMusicIcon();
-  hideTapToPlay();
+  updateMusicBtn();
 }
+
+// On load: show the splash, keep music muted until user interacts
+window.addEventListener('load', () => {
+  const audio = document.getElementById('bgMusic');
+  audio.muted = true;   // keep muted until user taps
+  updateMusicBtn();
+});
